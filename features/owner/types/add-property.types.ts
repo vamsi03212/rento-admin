@@ -1,0 +1,31 @@
+export interface AddPropertyForm {
+  rentType: string;
+  propertyType: string;
+  bedrooms: string;
+  bathrooms: string;
+  furnishing: string;
+  projectName: string;
+  totalFloors: string;
+  floorNo: string;
+  facing: string;
+  propertyLength: string;
+  propertyAge: string;
+  nearbySchool: string;
+  nearbyHospital: string;
+  nearbyParks: string;
+  nearbyMalls: string;
+  amenities: string[];
+  availabilityDate: string;
+  advanceAmount: string;
+  maintenance: string;
+  monthsAdvance: string;
+  country: string;
+  location: string;
+  area: string;
+  latitude: string;
+  longitude: string;
+  images: string[];
+  description: string;
+  currency: string;
+  rentAmount: string;
+}
