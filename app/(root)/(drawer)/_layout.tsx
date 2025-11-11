@@ -42,6 +42,10 @@ export default function DrawerLayout() {
         name="addpost"
         options={{ header: () => <CustomHeader title="Add Property" /> }}
       />
+      <Drawer.Screen
+        name="manager-property"
+        options={{ header: () => <CustomHeader title="Manager Property" /> }}
+      />
     </Drawer>
   );
 }
@@ -63,7 +67,7 @@ const CustomDrawer = (props: any) => {
     {
       label: "Manage Property",
       icon: ClipboardList,
-      route: "(owner)/manager-property",
+      route: "manager-property",
     },
     { label: "Enquiry", icon: Kayak, route: "enquiry" },
     { label: "Service Booking", icon: Calendar, route: "service-bookings" },
