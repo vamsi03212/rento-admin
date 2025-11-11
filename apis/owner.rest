@@ -1,0 +1,54 @@
+### get home properties
+GET {{baseUrl}}/api/owner/get-property/new/46?page=1&limit=10
+Content-Type: application/json
+
+### get servie
+GET {{baseUrl}}/api/admin/service/get-service
+Content-Type: application/json
+
+### get dashboard number info
+GET {{baseUrl}}/api/owner/dashboard/get-dashboard-info/46
+Content-Type: application/json
+
+### book service
+POST {{baseUrl}}/api/owner/service/post-service
+Content-Type: application/json
+
+{
+    "first_name": "data first_name",
+    "last_name": "data last_name",
+    "phone": "data phone",
+    "email": "owner@gmail.com",
+    "address": "data address",
+    "date": "dateToSave",
+    "time": "timeToSave",
+    "ownerId": 46,
+    "serviceType": "patiting"
+}
+
+
+### subscription plans
+GET {{baseUrl}}/api/owner/subscriptions/my-plan
+Content-Type: application/json
+
+### get single property
+GET {{baseUrl}}/api/owner/get-property/single-property/156
+Content-Type: application/json
+
+### get enquries
+GET {{baseUrl}}/api/owner/enquiry/get-enquiry/new/46?page=1&limit=10&search=
+Content-Type: application/json
+
+### get service bookings
+GET {{baseUrl}}/api/owner/service/get-service/new/46?page=1&limit=10&search=pain
+Content-Type: application/json
+
+
+### add post apis -- get property types 
+GET {{baseUrl}}/api/admin/category/property/get-property-type
+Content-Type: application/json
+
+### get amenities
+GET {{baseUrl}}/api/admin/category/amenities/get-amenity
+Content-Type: application/json
+
