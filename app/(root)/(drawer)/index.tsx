@@ -1,15 +1,9 @@
-import { Text, View } from "react-native";
+import { useAuthStore } from "@/features/auth/store/useAuthStore";
+import OwnerDashboard from "@/features/owner/screens/OwnerDashboard";
+import { Text } from "react-native";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
+  const role = useAuthStore((state) => state.user?.role);
+  if (role === "owner") return <OwnerDashboard />;
+  return <Text>Login</Text>;
 }

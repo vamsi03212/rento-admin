@@ -100,9 +100,9 @@ const CustomDrawer = (props: any) => {
 
   const handleNavigation = () => {
     if (user) {
-      //   router.push("/ProfileScreen");
+      router.push("/ProfileScreen");
     } else {
-      //   router.push("/ProfileScreen");
+      router.push("/ProfileScreen");
     }
   };
 
@@ -126,9 +126,7 @@ const CustomDrawer = (props: any) => {
             <Text style={styles.email}>{user.role?.toUpperCase()}</Text>
           </>
         ) : (
-          <Pressable
-          //   onPress={() => router.push("/(auth)/login-screen")}
-          >
+          <Pressable onPress={() => router.push("/(auth)/login-screen")}>
             <Text style={{ color: "white", fontSize: 18 }}>Login</Text>
           </Pressable>
         )}

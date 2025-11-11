@@ -1,5 +1,7 @@
 import { useAuthStore } from "@/features/auth/store/useAuthStore";
 import { useState } from "react";
+import Toast from "react-native-toast-message";
+import { createProperty } from "../services/fetch-properties.service";
 import { AddPropertyForm } from "../types/add-property.types";
 import { validateAddPostForm } from "../validations/add-post.validation";
 
@@ -53,7 +55,7 @@ export const useAddPostHook = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLoading(true);
     const validationErrors = validateAddPostForm(form);
     setErrors(validationErrors);
@@ -63,7 +65,63 @@ export const useAddPostHook = () => {
       setLoading(false);
       return false;
     }
-    console.log("form", form);
+    const formData = new FormData();
+    formData.append("userId", String(user?.id ?? ""));
+    formData.append("rentType", form.rentType || "");
+    formData.append("propertyType", form.propertyType || "");
+    formData.append("bedrooms", form.bedrooms || "");
+    formData.append("bathrooms", form.bathrooms || "");
+    formData.append("furnishing", form.furnishing || "");
+    formData.append("projectName", form.projectName || "");
+    formData.append("description", form.description || "");
+    formData.append("rentAmount", form.rentAmount || "");
+    formData.append("latitude", form.latitude || "");
+    formData.append("longitude", form.longitude || "");
+    formData.append("country", form.country || "");
+    formData.append("location", form.location || "");
+    formData.append("area", form.area || "");
+    formData.append("availability", form.availabilityDate || "");
+    formData.append("currency", form.currency || "");
+
+    if (form.rentType === "Monthly") {
+      formData.append("totalFloors", form.totalFloors || "");
+      formData.append("floorNo", form.floorNo || "");
+      formData.append("facing", form.facing || "");
+      formData.append("nearbySchool", form.nearbySchool || "");
+      formData.append("nearbyHospital", form.nearbyHospital || "");
+      formData.append("nearbyParks", form.nearbyParks || "");
+      formData.append("nearbyMalls", form.nearbyMalls || "");
+      formData.append("propertyLength", form.propertyLength || "");
+      formData.append("propertyAge", form.propertyAge || "");
+      formData.append("advanceAmount", form.advanceAmount || "");
+      formData.append("monthsAdvance", form.monthsAdvance || "");
+      formData.append("maintenance", form.maintenance || "");
+    }
+
+    if (Array.isArray(form.amenities)) {
+      form.amenities.forEach((item) => {
+        if (item) formData.append("amenities", item);
+      });
+    }
+
+    if (Array.isArray(form.images)) {
+      form.images.forEach((image) => {
+        if (image) formData.append("image", image);
+      });
+    }
+
+    const apiRes = await createProperty(formData);
+    if (apiRes?.status) {
+      Toast.show({
+        type: "success",
+        text1: "Property created successfully!",
+        position: "bottom",
+        visibilityTime: 3000,
+      });
+      setForm(initialFormState);
+    }
+    setLoading(false);
+    return true;
   };
 
   return {
