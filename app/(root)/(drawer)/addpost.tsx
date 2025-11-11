@@ -3,6 +3,7 @@ import AuthInput from "@/common/components/AuthInput";
 import AddPropetyDetails from "@/features/owner/component/AddPropetyDetails";
 import PostAddImages from "@/features/owner/component/PostAddImages";
 import { useAddPostHook } from "@/features/owner/hooks/addpost.hook";
+import { useKeyboardHook } from "@/lib/keyboard.hook";
 import React from "react";
 import {
   Keyboard,
@@ -15,8 +16,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Addpost = () => {
-  const { form, setForm, errors, handleChange, handleSubmit } =
+  const { form, setForm, errors, handleChange, handleSubmit, loading } =
     useAddPostHook();
+  const { keyboardVisible } = useKeyboardHook();
   return (
     <SafeAreaView
       className="flex-1 bg-white"
@@ -31,6 +33,7 @@ const Addpost = () => {
             contentContainerStyle={{
               flexGrow: 1,
               padding: 20,
+              paddingBottom: keyboardVisible ? 300 : 0,
             }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
@@ -50,7 +53,11 @@ const Addpost = () => {
               multiline
             />
             <View className="mt-4">
-              <AuthButton onPress={handleSubmit} title="Add Property" />
+              <AuthButton
+                onPress={handleSubmit}
+                title="Add Property"
+                isLoading={loading}
+              />
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>

@@ -1,4 +1,5 @@
 // import OfflineBanner from "@/common/components/OfflineBanner";
+import OfflineBanner from "@/common/components/OfflineBanner";
 import {
   Poppins_300Light,
   Poppins_400Regular,
@@ -37,7 +38,7 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style="dark" backgroundColor="transparent" />
-      {/* <OfflineBanner /> */}
+      <OfflineBanner />
       <Stack screenOptions={{ headerShown: false }} />;
       <Toast />
     </>
