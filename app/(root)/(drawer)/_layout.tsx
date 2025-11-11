@@ -46,6 +46,44 @@ export default function DrawerLayout() {
         name="manager-property"
         options={{ header: () => <CustomHeader title="Manager Property" /> }}
       />
+
+      <Drawer.Screen
+        name="enquiry"
+        options={{ header: () => <CustomHeader title="Enquiry" /> }}
+      />
+      <Drawer.Screen
+        name="service-bookings"
+        options={{ header: () => <CustomHeader title="Service Bookings" /> }}
+      />
+
+      <Drawer.Screen
+        name="tenant-details"
+        options={{ header: () => <CustomHeader title="Service Bookings" /> }}
+      />
+
+      {/* common */}
+      <Drawer.Screen
+        name="notification"
+        options={{ header: () => <CustomHeader title="Notification" /> }}
+      />
+      <Drawer.Screen
+        name="payment-history"
+        options={{ header: () => <CustomHeader title="Payment History" /> }}
+      />
+      <Drawer.Screen
+        name="support"
+        options={{ header: () => <CustomHeader title="Support" /> }}
+      />
+      <Drawer.Screen
+        name="terms-conditions"
+        options={{ header: () => <CustomHeader title="Terms & Conditions" /> }}
+      />
+      <Drawer.Screen
+        name="privacy-policy"
+        options={{
+          header: () => <CustomHeader title="Privacy Policy" />,
+        }}
+      />
     </Drawer>
   );
 }
@@ -74,7 +112,7 @@ const CustomDrawer = (props: any) => {
     {
       label: "Tenant Details",
       icon: Calendar,
-      route: "(owner)/tenant-details",
+      route: "tenant-details",
     },
   ];
 

@@ -17,6 +17,7 @@ interface HorizantalCardTypes<T extends PropertyType | EnquiryProperty> {
   isFillBtnText?: string;
   onPress?: (item: T) => void;
   onFillDetailsPress?: (item: T) => void;
+  isDisUserDetails?: boolean;
 }
 
 const HorizantalCard = <T extends PropertyType | EnquiryProperty>({
@@ -25,6 +26,7 @@ const HorizantalCard = <T extends PropertyType | EnquiryProperty>({
   onPress = () => {},
   onFillDetailsPress = () => {},
   isFillBtnText = "Fill Details",
+  isDisUserDetails = false,
 }: HorizantalCardTypes<T>) => {
   const prop =
     (property as EnquiryProperty).Property ?? (property as PropertyType);
@@ -81,33 +83,52 @@ const HorizantalCard = <T extends PropertyType | EnquiryProperty>({
             <Text
               className="text-gray-600 ml-1 text-xs mr-2"
               style={{ fontFamily: "poppins-regular" }}
-              numberOfLines={1}
+              numberOfLines={2}
             >
               {prop?.area} - {prop?.location}
             </Text>
           </View>
         </View>
 
-        {/* DETAILS */}
-        <View className="flex-row justify-between mt-2 pr-2">
-          {[
-            { icon: BedDouble, label: prop?.bedrooms ?? 0 },
-            { icon: Bath, label: prop?.bathrooms ?? 0 },
-            { icon: Square, label: prop?.propertyLength },
-          ].map(({ icon: Icon, label }, index) => (
-            <View key={index} className="flex flex-row items-center gap-1">
-              <View className="w-8 h-8 bg-[#faf5f0] rounded-full flex items-center justify-center">
-                <Icon size={14} color="#932537" />
-              </View>
+        {isDisUserDetails ? (
+          <View className="w-full flex flex-row justify-between items-center mt-2">
+            {"User" in property && property.User ? (
               <Text
-                className="text-sm"
+                className="text-gray-700 text-sm"
                 style={{ fontFamily: "poppins-medium" }}
               >
-                {label}
+                {property.User.first_name} {property.User.last_name}
               </Text>
-            </View>
-          ))}
-        </View>
+            ) : (
+              <Text
+                className="text-gray-400 text-sm"
+                style={{ fontFamily: "poppins-medium" }}
+              >
+                No user info
+              </Text>
+            )}
+          </View>
+        ) : (
+          <View className="flex-row justify-between mt-2 pr-2">
+            {[
+              { icon: BedDouble, label: prop?.bedrooms ?? 0 },
+              { icon: Bath, label: prop?.bathrooms ?? 0 },
+              { icon: Square, label: prop?.propertyLength },
+            ].map(({ icon: Icon, label }, index) => (
+              <View key={index} className="flex flex-row items-center gap-1">
+                <View className="w-8 h-8 bg-[#faf5f0] rounded-full flex items-center justify-center">
+                  <Icon size={14} color="#932537" />
+                </View>
+                <Text
+                  className="text-sm"
+                  style={{ fontFamily: "poppins-medium" }}
+                >
+                  {label}
+                </Text>
+              </View>
+            ))}
+          </View>
+        )}
 
         <View className="flex-row justify-between items-center mt-2">
           <Text

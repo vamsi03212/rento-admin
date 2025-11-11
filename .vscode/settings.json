@@ -3,5 +3,16 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
+  },
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:3001"
+    },
+    "local": {
+      "baseUrl": "http://localhost:3001"
+    },
+    "production": {
+      "baseUrl": "http://localhost:3001"
+    }
   }
 }
