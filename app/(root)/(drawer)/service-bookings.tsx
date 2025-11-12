@@ -18,6 +18,7 @@ const ServiceBooking = () => {
     isPaginating,
     fetchFn,
     meta,
+    refetchCurrentPage,
   } = useAlreadyExistingServiceBookingHook();
 
   return (
@@ -39,7 +40,7 @@ const ServiceBooking = () => {
             renderItem={({ item }) => (
               <AlreadyBookedServiceCom
                 service={item}
-                refetch={() => fetchFn(meta.page)}
+                refetch={refetchCurrentPage}
               />
             )}
             ItemSeparatorComponent={() => <View className="h-2" />}

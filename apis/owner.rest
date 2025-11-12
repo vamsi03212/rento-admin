@@ -40,7 +40,7 @@ GET {{baseUrl}}/api/owner/enquiry/get-enquiry/new/46?page=1&limit=10&search=
 Content-Type: application/json
 
 ### get service bookings
-GET {{baseUrl}}/api/owner/service/get-service/new/46?page=1&limit=10&search=pain
+GET {{baseUrl}}/api/owner/service/get-service/new/46?page=1&limit=10&search=Elec
 Content-Type: application/json
 
 

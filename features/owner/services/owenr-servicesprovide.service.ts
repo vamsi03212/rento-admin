@@ -35,8 +35,9 @@ export const getAlreadyExistingBookins = async ({
   const params = new URLSearchParams({
     page: String(page),
     limit: String(limit),
+    search: search || "",
   });
-  if (search) params.append("search", search);
+  // if (search) params.append("search", search);
 
   return apiWrapper<ExistingServiceResponse>(() =>
     API.get(`/api/owner/service/get-service/new/${userId}?${params.toString()}`)

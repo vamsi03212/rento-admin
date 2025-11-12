@@ -1,6 +1,6 @@
 import icons from "@/constant/icons";
 import images from "@/constant/images";
-// eslint-disable-next-line import/no-unresolved
+
 import { PropertyType } from "@/features/owner/types/property.type";
 import { FC } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
@@ -11,7 +11,6 @@ interface CardTypes {
 }
 
 const Card: FC<CardTypes> = ({ property, onPress }) => {
-  // 🟢 Map colors for property status
   const statusColors: Record<string, { bg: string; text: string }> = {
     Approved: { bg: "bg-green-100", text: "text-green-700" },
     Rejected: { bg: "bg-red-100", text: "text-red-700" },

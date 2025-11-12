@@ -1,5 +1,3 @@
-import { useAuthStore } from "@/features/auth/store/useAuthStore";
-import { useRouter } from "expo-router";
 import React, { FC } from "react";
 import { Pressable, ScrollView, Text, TextInput } from "react-native";
 // import { useBookServiceHook } from "../hooks/book-service.hook";
@@ -21,9 +19,6 @@ const ServiceBookingModal: FC<ServiceBookingModalProps> = ({
   serviceType,
   price,
 }) => {
-  const user = useAuthStore((state) => state.user);
-  const router = useRouter();
-
   const {
     formData,
     showPicker,
