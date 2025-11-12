@@ -71,5 +71,6 @@ export const usePaginatedFetch = ({
     hasMore,
     loadMore,
     refresh,
+    fetchData,
   };
 };

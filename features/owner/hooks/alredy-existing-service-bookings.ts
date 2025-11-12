@@ -31,11 +31,16 @@ export const useAlreadyExistingServiceBookingHook = ({ limit = 10 } = {}) => {
     hasMore,
     loadMore,
     refresh,
+    fetchData,
   } = usePaginatedFetch({
     fetchFn,
     deps: [user?.id, query],
     limit,
   });
+
+  const refetchCurrentPage = async () => {
+    await fetchData(meta?.page || 1);
+  };
 
   return {
     services,
@@ -48,5 +53,6 @@ export const useAlreadyExistingServiceBookingHook = ({ limit = 10 } = {}) => {
     refresh,
     query,
     fetchFn,
+    refetchCurrentPage,
   };
 };

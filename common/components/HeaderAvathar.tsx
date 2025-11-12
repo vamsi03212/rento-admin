@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 const HeaderAvathar = () => {
-  // const user = useAuthStore((state) => state.user);
   const user = { first_name: "Buyer" };
 
   const { fullAddress } = useLocationHook();
@@ -43,17 +42,19 @@ const HeaderAvathar = () => {
       </View>
 
       {/* Right - Location */}
-      <Pressable className="flex-1 flex-row items-center gap-1 min-w-[(auto]">
-        <MapPin size={18} color="#666876" />
-        <Text
-          className="text-sm flex-1 text-black-200"
-          style={{ fontFamily: "poppins-regular" }}
-          numberOfLines={1}
-        >
-          {fullAddress}
-        </Text>
-        <ChevronDown size={18} color="#191D31" />
-      </Pressable>
+      {fullAddress && (
+        <Pressable className="flex-1 flex-row items-center gap-1 min-w-[(auto]">
+          <MapPin size={18} color="#666876" />
+          <Text
+            className="text-sm flex-1 text-black-200"
+            style={{ fontFamily: "poppins-regular" }}
+            numberOfLines={1}
+          >
+            {fullAddress}
+          </Text>
+          <ChevronDown size={18} color="#191D31" />
+        </Pressable>
+      )}
     </View>
   );
 };
