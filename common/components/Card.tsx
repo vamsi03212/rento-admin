@@ -1,7 +1,5 @@
-import icons from "@/constant/icons";
-import images from "@/constant/images";
-
 import { PropertyType } from "@/features/owner/types/property.type";
+import { getImageUrl } from "@/lib/imageUrl";
 import { FC } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
@@ -40,7 +38,11 @@ const Card: FC<CardTypes> = ({ property, onPress }) => {
       </View>
 
       {/* 🏠 Property Image */}
-      <Image source={images.feature1} className="w-full h-40 rounded-lg" />
+      <Image
+        //  source={images.feature1}
+        source={getImageUrl(property?.images?.[0]?.image)}
+        className="w-full h-40 rounded-lg"
+      />
 
       {/* 📄 Property Info */}
       <View className="flex flex-col mt-2">
@@ -67,11 +69,20 @@ const Card: FC<CardTypes> = ({ property, onPress }) => {
           >
             ₹ {property?.rentAmount?.split(".")?.[0] || "—"}
           </Text>
-          <Image
-            source={icons.heart}
-            className="w-5 h-5 mr-2"
-            tintColor="#191D31"
-          />
+          <View
+            className={`px-3 py-1 rounded-full ${
+              property?.is_listed ? "bg-emerald-100" : "bg-gray-200"
+            }`}
+          >
+            <Text
+              style={{ fontFamily: "poppins-medium" }}
+              className={`text-xs ${
+                property?.is_listed ? "text-emerald-700" : "text-gray-600"
+              }`}
+            >
+              {property?.is_listed ? "Listed" : "Unlisted"}
+            </Text>
+          </View>
         </View>
         {/* <View className="flex flex-row items-center justify-between mt-3">
           <View

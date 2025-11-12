@@ -48,3 +48,12 @@ export const createProperty = async (formData: FormData) => {
     })
   );
 };
+
+export const updateProperty = async (
+  id: string | number,
+  formData: FormData
+) => {
+  return API.put(`/api/owner/update-property/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};

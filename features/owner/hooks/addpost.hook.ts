@@ -1,7 +1,12 @@
 import { useAuthStore } from "@/features/auth/store/useAuthStore";
-import { useState } from "react";
+import { getImageUrl } from "@/lib/imageUrl";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import Toast from "react-native-toast-message";
-import { createProperty } from "../services/fetch-properties.service";
+import {
+  createProperty,
+  updateProperty,
+} from "../services/fetch-properties.service";
 import { AddPropertyForm } from "../types/add-property.types";
 import { validateAddPostForm } from "../validations/add-post.validation";
 
@@ -18,7 +23,7 @@ const initialFormState: AddPropertyForm = {
   propertyLength: "",
   propertyAge: "",
   amenities: [],
-  availabilityDate: "",
+  availability: "",
   nearbySchool: "",
   nearbyHospital: "",
   nearbyParks: "",
@@ -39,9 +44,37 @@ const initialFormState: AddPropertyForm = {
 
 export const useAddPostHook = () => {
   const { user } = useAuthStore();
+  const { property } = useLocalSearchParams();
+  const parsedProperty = property
+    ? JSON.parse(Array.isArray(property) ? property[0] : property)
+    : null;
   const [form, setForm] = useState<AddPropertyForm>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [editable, setEditable] = useState(false);
+
+  useEffect(() => {
+    if (parsedProperty) {
+      setEditable(true);
+      setForm({
+        ...initialFormState,
+        ...parsedProperty,
+        images:
+          parsedProperty.images?.map(
+            (img: any) => getImageUrl(img.image).uri
+          ) || [],
+      });
+    }
+  }, [parsedProperty]);
+
+  useEffect(() => {
+    return () => {
+      setForm(initialFormState);
+      setErrors({});
+      setLoading(false);
+      setEditable(false);
+    };
+  }, []);
 
   const handleChange = <K extends keyof AddPropertyForm>(
     field: K,
@@ -80,7 +113,7 @@ export const useAddPostHook = () => {
     formData.append("country", form.country || "");
     formData.append("location", form.location || "");
     formData.append("area", form.area || "");
-    formData.append("availability", form.availabilityDate || "");
+    formData.append("availability", form.availability || "");
     formData.append("currency", form.currency || "");
 
     if (form.rentType === "Monthly") {
@@ -110,11 +143,16 @@ export const useAddPostHook = () => {
       });
     }
 
-    const apiRes = await createProperty(formData);
+    const apiRes = editable
+      ? await updateProperty(parsedProperty?.id, formData)
+      : await createProperty(formData);
+
     if (apiRes?.status) {
       Toast.show({
         type: "success",
-        text1: "Property created successfully!",
+        text1: editable
+          ? "Property Edit successfully"
+          : "Property created successfully!",
         position: "bottom",
         visibilityTime: 3000,
       });
@@ -131,5 +169,6 @@ export const useAddPostHook = () => {
     loading,
     handleChange,
     handleSubmit,
+    editable,
   };
 };

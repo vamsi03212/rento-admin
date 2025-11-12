@@ -15,7 +15,7 @@ export interface AddPropertyForm {
   nearbyParks: string;
   nearbyMalls: string;
   amenities: string[];
-  availabilityDate: string;
+  availability: string;
   advanceAmount: string;
   maintenance: string;
   monthsAdvance: string;

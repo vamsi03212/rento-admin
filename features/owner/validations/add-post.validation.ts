@@ -41,8 +41,7 @@ export const validateAddPostForm = (
     errors.projectName = "Project name cannot exceed 50 characters";
 
   // 📅 Availability
-  if (!form.availabilityDate)
-    errors.availabilityDate = "Availability date is required";
+  if (!form.availability) errors.availability = "Availability date is required";
 
   // 🧱 Rent Type - Conditional Fields
   if (form.rentType === "Monthly") {
