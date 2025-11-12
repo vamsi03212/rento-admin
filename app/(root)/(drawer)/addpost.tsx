@@ -16,8 +16,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Addpost = () => {
-  const { form, setForm, errors, handleChange, handleSubmit, loading } =
-    useAddPostHook();
+  const {
+    form,
+    setForm,
+    errors,
+    handleChange,
+    handleSubmit,
+    loading,
+    editable,
+  } = useAddPostHook();
   const { keyboardVisible } = useKeyboardHook();
   return (
     <SafeAreaView
@@ -55,7 +62,7 @@ const Addpost = () => {
             <View className="mt-4">
               <AuthButton
                 onPress={handleSubmit}
-                title="Add Property"
+                title={editable ? "Edit Propety" : "Add Property"}
                 isLoading={loading}
               />
             </View>

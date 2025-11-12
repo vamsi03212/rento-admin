@@ -37,12 +37,12 @@ const AddPropertyDetails: FC<AddPropertyDetailsProps> = ({
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [datePickerValue, setDatePickerValue] = useState<Date>(
-    form.availabilityDate ? new Date(form.availabilityDate) : new Date()
+    form.availability ? new Date(form.availability) : new Date()
   );
 
   // 🗓️ Format date for display
-  const formattedDate = form.availabilityDate
-    ? new Date(form.availabilityDate).toLocaleDateString("en-GB", {
+  const formattedDate = form.availability
+    ? new Date(form.availability).toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
         year: "numeric",
@@ -55,7 +55,7 @@ const AddPropertyDetails: FC<AddPropertyDetailsProps> = ({
   ) => {
     if (event.type === "set" && selectedDate) {
       setDatePickerValue(selectedDate);
-      handleChange("availabilityDate", selectedDate.toISOString());
+      handleChange("availability", selectedDate.toISOString());
     }
     setShowDatePicker(false);
   };
@@ -139,9 +139,12 @@ const AddPropertyDetails: FC<AddPropertyDetailsProps> = ({
           selectedValue={form.furnishing || ""}
           onValueChange={(value) => handleChange("furnishing", value as string)}
           options={[
-            { label: "Full-Furnished", value: "Full-Furnished" },
-            { label: "Semi-Furnished", value: "Semi-Furnished" },
-            { label: "Unfurnished", value: "Unfurnished" },
+            // { label: "Full-Furnished", value: "Full-Furnished" },
+            // { label: "Semi-Furnished", value: "Semi-Furnished" },
+            // { label: "Unfurnished", value: "Unfurnished" },
+            { label: "Semi-Furnished", value: "semi-furnished" },
+            { label: "Full-Furnished", value: "full-furnished" },
+            { label: "Unfurnished", value: "unfurnished" },
           ]}
           placeholder="Select Furnishing"
           error={errors.furnishing}
@@ -174,9 +177,9 @@ const AddPropertyDetails: FC<AddPropertyDetailsProps> = ({
             </Text>
           </TouchableOpacity>
 
-          {errors.availabilityDate ? (
+          {errors.availability ? (
             <Text className="text-red-500 text-xs mt-1">
-              {errors.availabilityDate}
+              {errors.availability}
             </Text>
           ) : null}
 

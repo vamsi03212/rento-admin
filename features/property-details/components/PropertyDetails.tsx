@@ -1,5 +1,6 @@
 import icons from "@/constant/icons";
 import { PropertyType } from "@/features/owner/types/property.type";
+import { useRouter } from "expo-router";
 import { SquarePen, Trash2 } from "lucide-react-native";
 import { FC, useState } from "react";
 import { Image, Text, View } from "react-native";
@@ -10,6 +11,7 @@ interface PropertyDetailsProps {
 }
 
 const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
+  const router = useRouter();
   const infoItems = [
     { icon: icons.bed, label: "Beds", value: property?.bedrooms ?? 0 },
     { icon: icons.bath, label: "Baths", value: property?.bathrooms ?? 0 },
@@ -17,6 +19,12 @@ const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
   ];
 
   const [deleteProperty, setDeleteProperty] = useState(false);
+  const handleEdit = () => {
+    router.push({
+      pathname: "/(root)/(drawer)/addpost",
+      params: { property: JSON.stringify(property) }, // Pass full object
+    });
+  };
 
   return (
     <>
@@ -52,7 +60,7 @@ const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
             </View>
           </View>
           <View className="flex flex-row gap-3 items-center">
-            <SquarePen size={20} color={"#932537"} />
+            <SquarePen onPress={handleEdit} size={20} color={"#932537"} />
             <Trash2
               onPress={() => setDeleteProperty(true)}
               size={20}
