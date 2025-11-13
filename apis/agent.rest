@@ -11,8 +11,8 @@ Content-Type: application/json
 GET {{baseUrl}}/api/agent/service/get-service/new/2?page=1&limit=10&search=
 Content-Type: application/json
 
-### get my request
-GET {{baseUrl}}/api/agent/enquiry/get-enquiry/2
+### get my enqury
+GET {{baseUrl}}/api/agent/enquiry/get-enquiry/177
 Content-Type: application/json
 
 ###  completed service
@@ -23,3 +23,20 @@ Content-Type: application/json
     "serviceStatus" :"complete",
     "description":""
 }
+
+
+### fetch notifications
+GET {{baseUrl}}/api/admin/notification/2/new?page=1&limit=10
+Content-Type: application/json
+
+### fetch support
+GET {{baseUrl}}/api/admin/support/get-support
+Content-Type: application/json
+
+### get my request
+GET {{baseUrl}}/api/agent/request/get-request/2/new?page=1&limit=10
+Content-Type: application/json
+
+### proof of service
+GET {{baseUrl}}/api/agent/proof/get-proof/100
+Content-Type: application/json
