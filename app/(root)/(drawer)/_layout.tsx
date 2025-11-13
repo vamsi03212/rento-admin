@@ -91,6 +91,18 @@ export default function DrawerLayout() {
           header: () => <CustomHeader title="My Request" />,
         }}
       />
+      <Drawer.Screen
+        name="proof-of-visit"
+        options={{
+          header: () => <CustomHeader title="Proof Of Visit" />,
+        }}
+      />
+      <Drawer.Screen
+        name="agent-enquiry"
+        options={{
+          header: () => <CustomHeader title="Enquiry" />,
+        }}
+      />
     </Drawer>
   );
 }
@@ -126,7 +138,7 @@ const CustomDrawer = (props: any) => {
   const agentItems = [
     { label: "My Request", icon: BoomBox, route: "my-request" },
     // { label: "Service Booking", icon: Calendar, route: "service-booking" },
-    { label: "My Enquiry", icon: ClipboardList, route: "my-enquiry" },
+    { label: "My Enquiry", icon: ClipboardList, route: "agent-enquiry" },
     { label: "Proof of Visit", icon: ClipboardList, route: "proof-of-visit" },
   ];
 

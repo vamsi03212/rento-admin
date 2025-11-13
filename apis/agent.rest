@@ -38,5 +38,5 @@ GET {{baseUrl}}/api/agent/request/get-request/2/new?page=1&limit=10
 Content-Type: application/json
 
 ### proof of service
-GET {{baseUrl}}/api/agent/proof/get-proof/100
+GET {{baseUrl}}/api/agent/proof/get-proof/100/new?page=1&limit=10
 Content-Type: application/json
