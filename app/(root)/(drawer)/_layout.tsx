@@ -84,6 +84,13 @@ export default function DrawerLayout() {
           header: () => <CustomHeader title="Privacy Policy" />,
         }}
       />
+      {/* agent */}
+      <Drawer.Screen
+        name="my-request"
+        options={{
+          header: () => <CustomHeader title="My Request" />,
+        }}
+      />
     </Drawer>
   );
 }
@@ -118,8 +125,9 @@ const CustomDrawer = (props: any) => {
 
   const agentItems = [
     { label: "My Request", icon: BoomBox, route: "my-request" },
-    { label: "Service Booking", icon: Calendar, route: "service-booking" },
-    { label: "My Booking", icon: ClipboardList, route: "my-booking" },
+    // { label: "Service Booking", icon: Calendar, route: "service-booking" },
+    { label: "My Enquiry", icon: ClipboardList, route: "my-enquiry" },
+    { label: "Proof of Visit", icon: ClipboardList, route: "proof-of-visit" },
   ];
 
   const bottomItems = [
@@ -138,7 +146,11 @@ const CustomDrawer = (props: any) => {
           ...ownerItems,
           ...commonItems,
         ]
-      : [...commonItems, ...agentItems];
+      : [
+          { label: "Home", icon: Home, route: "index" },
+          ...agentItems,
+          ...commonItems,
+        ];
 
   const handleNavigation = () => {
     if (user) {

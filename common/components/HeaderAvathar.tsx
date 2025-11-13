@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/features/auth/store/useAuthStore";
 import { useLocationHook } from "@/lib/location.hook";
 // import { useAuthStore } from "@/stores/useAuthStore";
 import { ChevronDown, MapPin } from "lucide-react-native";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 const HeaderAvathar = () => {
-  const user = { first_name: "Buyer" };
+  const { user } = useAuthStore();
 
   const { fullAddress } = useLocationHook();
   const [greeting, setGreeting] = useState("Hello");
@@ -36,12 +37,11 @@ const HeaderAvathar = () => {
             {greeting}
           </Text>
           <Text className="text-[14px] font-poppins-medium text-black-300 -mt-1">
-            {user?.first_name ?? "Have Nice Day"}
+            {user?.first_name?.slice(0, 14) ?? "Have Nice Day"}
           </Text>
         </View>
       </View>
 
-      {/* Right - Location */}
       {fullAddress && (
         <Pressable className="flex-1 flex-row items-center gap-1 min-w-[(auto]">
           <MapPin size={18} color="#666876" />

@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const AgentDashboard = () => {
+const MyRequest = () => {
   return (
     <View>
-      <Text>AgentDashboard</Text>
+      <Text>MyRequest</Text>
     </View>
   );
 };
 
-export default AgentDashboard;
+export default MyRequest;

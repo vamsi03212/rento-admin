@@ -1,0 +1,25 @@
+### get agent dashboard count
+GET {{baseUrl}}/api/agent/dashboard/get-dashboard-info/2
+Content-Type: application/json
+
+
+### agent assigned property
+GET {{baseUrl}}/api/agent/property/get-property/new/2?page=1&limit=10&search=
+Content-Type: application/json
+
+### get assigned services
+GET {{baseUrl}}/api/agent/service/get-service/new/2?page=1&limit=10&search=
+Content-Type: application/json
+
+### get my request
+GET {{baseUrl}}/api/agent/enquiry/get-enquiry/2
+Content-Type: application/json
+
+###  completed service
+PUT {{baseUrl}}/api/agent/service/update-service/3
+Content-Type: application/json
+
+{
+    "serviceStatus" :"complete",
+    "description":""
+}

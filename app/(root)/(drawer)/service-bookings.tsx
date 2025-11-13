@@ -16,8 +16,6 @@ const ServiceBooking = () => {
     refresh,
     query,
     isPaginating,
-    fetchFn,
-    meta,
     refetchCurrentPage,
   } = useAlreadyExistingServiceBookingHook();
 
