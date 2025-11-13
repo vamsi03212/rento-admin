@@ -13,15 +13,20 @@
       "bundleIdentifier": "com.envisionedstrategyconsulting.rentoowner"
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
+      // "adaptiveIcon": {
+      //   "backgroundColor": "#E6F4FE",
+      //   "foregroundImage": "./assets/images/android-icon-foreground.png",
+      //   "backgroundImage": "./assets/images/android-icon-background.png",
+      //   "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      // },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.envisionedstrategyconsulting.rentoowner"
+      "package": "com.envisionedstrategyconsulting.rentoowner",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "output": "static",
