@@ -1,4 +1,5 @@
 import icons from "@/constant/icons";
+import { useAuthStore } from "@/features/auth/store/useAuthStore";
 import { PropertyType } from "@/features/owner/types/property.type";
 import { useRouter } from "expo-router";
 import { SquarePen, Trash2 } from "lucide-react-native";
@@ -12,6 +13,7 @@ interface PropertyDetailsProps {
 
 const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
   const router = useRouter();
+  const role = useAuthStore((state) => state.user?.role);
   const infoItems = [
     { icon: icons.bed, label: "Beds", value: property?.bedrooms ?? 0 },
     { icon: icons.bath, label: "Baths", value: property?.bathrooms ?? 0 },
@@ -59,14 +61,16 @@ const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
               </Text>
             </View>
           </View>
-          <View className="flex flex-row gap-3 items-center">
-            <SquarePen onPress={handleEdit} size={20} color={"#932537"} />
-            <Trash2
-              onPress={() => setDeleteProperty(true)}
-              size={20}
-              color={"#932537"}
-            />
-          </View>
+          {role === "owner" && (
+            <View className="flex flex-row gap-3 items-center">
+              <SquarePen onPress={handleEdit} size={20} color={"#932537"} />
+              <Trash2
+                onPress={() => setDeleteProperty(true)}
+                size={20}
+                color={"#932537"}
+              />
+            </View>
+          )}
         </View>
 
         <View className="flex flex-row flex-wrap justify-between">

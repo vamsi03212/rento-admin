@@ -1,4 +1,5 @@
 import { useApi } from "@/common/hooks/useApi";
+import { getAgentDashboardCountApi } from "@/features/agent/service/agent-dashboard-count.service";
 import { useAuthStore } from "@/features/auth/store/useAuthStore";
 import { useIsFocused } from "@react-navigation/native";
 import { useCallback, useEffect } from "react";
@@ -12,7 +13,14 @@ export const useOwnerDashbaordCountHook = () => {
     if (!user?.id) {
       return { status: false, error: "User not logged in" };
     }
-    return getOwnerDashboardCountApi({ userId: user.id });
+    // return getOwnerDashboardCountApi({ userId: user.id });
+    if (user.role === "owner") {
+      return getOwnerDashboardCountApi({ userId: user.id });
+    } else if (user.role === "agent") {
+      return getAgentDashboardCountApi({ userId: user.id });
+    } else {
+      return { status: false, error: "Unknown role" };
+    }
   }, [user?.id]);
 
   const {

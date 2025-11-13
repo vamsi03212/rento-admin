@@ -1,5 +1,5 @@
 import images from "@/constant/images";
-import { useRouter } from "expo-router";
+import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
 
 interface EmptyCardTypes {
@@ -7,12 +7,7 @@ interface EmptyCardTypes {
   isDisBtn?: boolean;
 }
 
-export default function EmptyWishlist({
-  txt,
-  isDisBtn = true,
-}: EmptyCardTypes) {
-  const router = useRouter();
-
+const EmptyWishlistComponent = ({ txt, isDisBtn = true }: EmptyCardTypes) => {
   return (
     <View className="flex-1 justify-center items-center gap-3">
       <Image
@@ -38,4 +33,12 @@ export default function EmptyWishlist({
       )}
     </View>
   );
-}
+};
+
+EmptyWishlistComponent.displayName = "EmptyWishlist";
+
+export default React.memo(
+  EmptyWishlistComponent,
+  (prevProps, nextProps) =>
+    prevProps.txt === nextProps.txt && prevProps.isDisBtn === nextProps.isDisBtn
+);

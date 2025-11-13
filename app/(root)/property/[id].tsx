@@ -1,4 +1,6 @@
 import DataWrapper from "@/common/components/DataWrapper";
+import { useAuthStore } from "@/features/auth/store/useAuthStore";
+import AgentAction from "@/features/property-details/components/AgentAction";
 import Facilities from "@/features/property-details/components/Facilities";
 import PropertyDetails from "@/features/property-details/components/PropertyDetails";
 import PropertyGallery from "@/features/property-details/components/PropertyGallery";
@@ -11,6 +13,7 @@ import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Property = () => {
+  const role = useAuthStore((state) => state.user?.role);
   const { singleProperty, loading, error } = usePropertyDetailsHook();
   return (
     <SafeAreaView edges={["bottom"]} className="flex-1 bg-white">
@@ -30,6 +33,9 @@ const Property = () => {
               <Facilities amenities={singleProperty?.amenities ?? []} />
               <PropertyGallery propertyImages={singleProperty?.images ?? []} />
               <PropertyLocation property={singleProperty} />
+              {role === "agent" && singleProperty?.id && (
+                <AgentAction propertyId={singleProperty.id} />
+              )}
             </View>
           </ScrollView>
         </View>
