@@ -32,6 +32,7 @@ export const useAlreadyExistingServiceBookingHook = ({ limit = 10 } = {}) => {
     loadMore,
     refresh,
     fetchData,
+    updateItem,
   } = usePaginatedFetch({
     fetchFn,
     deps: [user?.id, query],
@@ -54,5 +55,6 @@ export const useAlreadyExistingServiceBookingHook = ({ limit = 10 } = {}) => {
     query,
     fetchFn,
     refetchCurrentPage,
+    updateItem,
   };
 };

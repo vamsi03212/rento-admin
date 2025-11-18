@@ -20,17 +20,26 @@ const DeletePropertyModal: FC<{
   const [selectedOption, setSelectedOption] = useState("");
   const [customReason, setCustomReason] = useState("");
 
-  const handleConfirm = () => {
+  const isValid =
+    selectedOption &&
+    (selectedOption !== "Something else" || customReason.trim() !== "");
+
+  const handleConfirm = async () => {
     const finalReason =
       selectedOption === "Something else" ? customReason : selectedOption;
-    console.log("Delete reason:", finalReason);
-    handleClose();
-  };
 
-  const handleClose = async () => {
+    console.log("Delete reason:", finalReason);
+
     const apiRes = await deletePropertyFromOwner({
       propertyId,
     });
+
+    if (apiRes.status) {
+      handleClose();
+    }
+  };
+
+  const handleClose = () => {
     setSelectedOption("");
     setCustomReason("");
     onClose();
@@ -53,14 +62,14 @@ const DeletePropertyModal: FC<{
     >
       <View className="gap-5">
         <Text
-          className="text-lg text-black "
+          className="text-lg text-black"
           style={{ fontFamily: "poppins-semi-bold" }}
         >
           Delete Property
         </Text>
 
         <Text
-          className="text-gray-500 text-sm "
+          className="text-gray-500 text-sm"
           style={{ fontFamily: "poppins-regular" }}
         >
           Please tell us why you want to delete this property. Your feedback
@@ -85,7 +94,9 @@ const DeletePropertyModal: FC<{
           />
         )}
 
+        {/* BUTTONS */}
         <View className="flex-row justify-between mt-4">
+          {/* Cancel Button */}
           <Pressable
             onPress={handleClose}
             className="flex-1 py-3 mr-2 rounded-full border border-gray-300"
@@ -101,16 +112,11 @@ const DeletePropertyModal: FC<{
 
           <Pressable
             onPress={handleConfirm}
-            disabled={
-              !selectedOption ||
-              (selectedOption === "Something else" && !customReason.trim())
-            }
-            className={`flex-1 py-3 rounded-full ${
-              !selectedOption ||
-              (selectedOption === "Something else" && !customReason.trim())
-                ? "bg-gray-300"
-                : "bg-[#932537]"
+            disabled={!isValid}
+            className={`flex-1 py-3 rounded-full  ${
+              isValid ? "bg-[#932537]" : "bg-gray-300"
             }`}
+            style={{ opacity: isValid ? 1 : 0.6 }}
             android_ripple={{ color: "#ffffff20" }}
           >
             <Text

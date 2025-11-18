@@ -6,5 +6,8 @@ export const deletePropertyFromOwner = async ({
 }: {
   propertyId: number;
 }) => {
-  return apiWrapper(() => API.get(`/api/owner/properties/${propertyId}`));
+  return apiWrapper(
+    () => API.put(`/api/owner/properties/${propertyId}/toggle-listing`),
+    { toastPosition: "top" }
+  );
 };

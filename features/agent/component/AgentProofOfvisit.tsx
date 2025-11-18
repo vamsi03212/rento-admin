@@ -46,7 +46,7 @@ const AgentProofOfvisit = ({ item }: { item: AgentProofOfVisit }) => {
         </View>
 
         <Text className="text-xs text-gray-400 mt-2">
-          Visited on:{" "}
+          Visited on:
           {new Date(item.date).toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "2-digit",

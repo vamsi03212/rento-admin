@@ -26,19 +26,19 @@ const statusColor = (status: ServiceStatus) => {
 
 interface AlreadyBookedServiceType {
   service: ExistingServiceType;
-  refetch: () => void;
+  updateItem: (item: ExistingServiceType) => void;
 }
 
 const AlreadyBookedServiceCom: FC<AlreadyBookedServiceType> = ({
   service,
-  refetch,
+  updateItem,
 }) => {
   const {
     isDisplayDeleteModal,
     setIsDisplayDeleteModal,
     handleCancelSeervice,
     loading,
-  } = useExistingServiceCancelHook({ service, refetch });
+  } = useExistingServiceCancelHook({ service, updateItem });
   return (
     <>
       <View className="mb-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
@@ -81,7 +81,7 @@ const AlreadyBookedServiceCom: FC<AlreadyBookedServiceType> = ({
             <View className="flex-row items-center mt-1 gap-1">
               <Clock size={14} color="#6B7280" />
               <Text className="text-gray-500 text-xs">
-                {new Date(service?.date).toDateString()} —{" "}
+                {new Date(service?.date).toDateString()} —
                 {new Date(
                   `${service?.date}T${service?.timeslot}:00`
                 ).toLocaleTimeString([], {
@@ -129,13 +129,6 @@ const AlreadyBookedServiceCom: FC<AlreadyBookedServiceType> = ({
         loading={loading}
         onConfirm={handleCancelSeervice}
       />
-      {/* modal cancel service modal */}
-      {/* <CancelServiceModal
-        onClose={() => setIsDisplayDeleteModal(false)}
-        open={isDisplayDeleteModal}
-        onConfirm={handleCancelSeervice}
-        loading={loading}
-      /> */}
     </>
   );
 };

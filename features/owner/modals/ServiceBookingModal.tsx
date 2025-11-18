@@ -41,13 +41,13 @@ const ServiceBookingModal: FC<ServiceBookingModalProps> = ({
     >
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text className="text-lg mb-4" style={{ fontFamily: "poppins-medium" }}>
-          Book Your{" "}
+          Book Your
           <Text
             className="text-primary-100 text-xl"
             style={{ fontFamily: "poppins-semi-bold" }}
           >
             {serviceType}
-          </Text>{" "}
+          </Text>
           Slot
         </Text>
         <Text

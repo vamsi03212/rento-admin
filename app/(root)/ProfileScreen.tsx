@@ -261,7 +261,7 @@ const ProfileScreen = () => {
 
                               {citySuggestions[0].state ? (
                                 <Text className="text-xs text-gray-500 mt-0.5">
-                                  {citySuggestions[0].state},{" "}
+                                  {citySuggestions[0].state},
                                   {citySuggestions[0].country}
                                 </Text>
                               ) : null}

@@ -1,6 +1,7 @@
 import { apiWrapper } from "@/lib/api-wrapper";
 import { API } from "@/lib/url";
 import {
+  CancelServiceRes,
   ExistingServiceResponse,
   PostServiceTypes,
   ServiceType,
@@ -46,7 +47,7 @@ export const getAlreadyExistingBookins = async ({
 
 // cancel service
 export const cancelServiceApi = async (id: number) => {
-  return apiWrapper(() =>
+  return apiWrapper<CancelServiceRes>(() =>
     API.put(`/api/owner/service/cancel-service/${id}`, {
       serviceStatus: "cancelled",
     })

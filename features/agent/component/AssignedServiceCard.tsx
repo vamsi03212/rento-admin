@@ -96,7 +96,7 @@ const AssignedServiceCard = ({
             style={{ fontFamily: "poppins-medium" }}
             className="text-gray-600"
           >
-            Service type:{" "}
+            Service type:
             <Text className="text-blue-600 font-semibold">
               {service?.serviceType || "Unknown"}
             </Text>

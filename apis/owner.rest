@@ -52,3 +52,10 @@ Content-Type: application/json
 GET {{baseUrl}}/api/admin/category/amenities/get-amenity
 Content-Type: application/json
 
+### cancel service
+PUT {{baseUrl}}/api/owner/service/cancel-service/103
+Content-Type: application/json
+
+{
+    "serviceStatus":"cancelled"
+}
