@@ -17,7 +17,9 @@ const ServiceBooking = () => {
     query,
     isPaginating,
     refetchCurrentPage,
+    updateItem,
   } = useAlreadyExistingServiceBookingHook();
+  console.log("services", services?.[0]);
 
   return (
     <View className="flex-1 bg-white p-3">
@@ -36,10 +38,7 @@ const ServiceBooking = () => {
               `${item.id ?? "no-id"}-${item.createdAt ?? index}-${index}`
             }
             renderItem={({ item }) => (
-              <AlreadyBookedServiceCom
-                service={item}
-                refetch={refetchCurrentPage}
-              />
+              <AlreadyBookedServiceCom service={item} updateItem={updateItem} />
             )}
             ItemSeparatorComponent={() => <View className="h-2" />}
             showsVerticalScrollIndicator={false}

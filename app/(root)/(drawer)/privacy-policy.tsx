@@ -48,7 +48,7 @@ export default function PrivacyPolicyScreen() {
           text={
             <>
               For any questions or concerns about our Privacy Policy, please
-              reach out at{" "}
+              reach out at
               <Text className="text-[#932537] underline">
                 privacy@renteasyapp.com
               </Text>

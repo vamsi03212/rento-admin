@@ -62,6 +62,14 @@ export const usePaginatedFetch = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, ...deps]);
 
+  const updateItem = (updatedItem: any) => {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === updatedItem.id ? { ...item, ...updatedItem } : item
+      )
+    );
+  };
+
   return {
     items,
     meta,
@@ -72,5 +80,6 @@ export const usePaginatedFetch = ({
     loadMore,
     refresh,
     fetchData,
+    updateItem,
   };
 };

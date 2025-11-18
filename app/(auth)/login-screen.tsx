@@ -102,7 +102,7 @@ const LoginScreen = () => {
                     style={{ fontFamily: "poppins-medium" }}
                     className="text-sm"
                   >
-                    Don&apos;t have account{" "}
+                    Do not have account
                     <Text className="text-primary-100">Sign Up</Text>
                   </Text>
                 </Pressable>

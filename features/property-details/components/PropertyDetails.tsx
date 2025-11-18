@@ -24,7 +24,7 @@ const PropertyDetails: FC<PropertyDetailsProps> = ({ property }) => {
   const handleEdit = () => {
     router.push({
       pathname: "/(root)/(drawer)/addpost",
-      params: { property: JSON.stringify(property) }, // Pass full object
+      params: { property: JSON.stringify(property) },
     });
   };
 

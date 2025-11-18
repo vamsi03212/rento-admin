@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/features/auth/store/useAuthStore";
 import { getImageUrl } from "@/lib/imageUrl";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import Toast from "react-native-toast-message";
 import {
@@ -44,6 +44,7 @@ const initialFormState: AddPropertyForm = {
 
 export const useAddPostHook = () => {
   const { user } = useAuthStore();
+  const router = useRouter();
   const { property } = useLocalSearchParams();
   const parsedProperty = property
     ? JSON.parse(Array.isArray(property) ? property[0] : property)
@@ -156,6 +157,12 @@ export const useAddPostHook = () => {
         position: "bottom",
         visibilityTime: 3000,
       });
+      if (editable) {
+        setTimeout(() => {
+          router.back();
+        }, 500);
+      }
+
       setForm(initialFormState);
     }
     setLoading(false);

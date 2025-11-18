@@ -53,3 +53,27 @@ export interface ExistingServiceResponse {
   };
   message: string;
 }
+
+// cancel service types
+
+export interface CancelServiceRes {
+  message: string;
+  data: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    serviceType: string;
+    timeslot: string;
+    date: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    ownerId: number;
+    isAssigned: boolean;
+    agentId: string | null;
+    serviceStatus: string;
+    description: string | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+}

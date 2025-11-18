@@ -5,10 +5,10 @@ import { ExistingServiceType } from "../types/service-provided.types";
 
 export const useExistingServiceCancelHook = ({
   service,
-  refetch,
+  updateItem,
 }: {
   service: ExistingServiceType;
-  refetch: () => void;
+  updateItem: (item: ExistingServiceType) => void;
 }) => {
   const [loading, setLoading] = useState(false);
   const [isDisplayDeleteModal, setIsDisplayDeleteModal] = useState(false);
@@ -17,8 +17,13 @@ export const useExistingServiceCancelHook = ({
     setLoading(true);
     const apiRes = await cancelServiceApi(service.id);
 
-    if (apiRes.status) {
-      refetch();
+    if (apiRes.status && apiRes.data) {
+      // updateItem(apiRes.data);
+      // const updated: ExistingServiceType = {
+      //   ...service,
+      //   ...apiRes.data,
+      // };
+      //    updateItem(updated);
       setIsDisplayDeleteModal(false);
       Toast.show({
         type: "info",

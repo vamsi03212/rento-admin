@@ -15,13 +15,13 @@ export const API = axios.create({
 API.interceptors.request.use(async (config) => {
   const token = useAuthStore.getState().token;
 
-  if (token) {
-    config.headers["Cookie"] = token;
-  }
+  // Identify request coming from mobile app
+  config.headers["x-mobile-request"] = "true";
 
-  //if (token && config.url?.startsWith("/api/owner")) {
-  //   config.headers["Cookie"] = `token=${token}`;
-  // }
+  // JWT as Authorization header
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
 
   return config;
 });
